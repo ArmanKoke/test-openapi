@@ -1,0 +1,18 @@
+generate:
+  chi-server: true
+  models: true
+  embedded-spec: true
+compatibility:
+  apply-chi-middleware-first-to-last: true
+package: gen
+output: oapi/gen/integration-server.gen.go
+output-options:
+  user-templates:
+    # The following are referencing a versuion of the default
+    # client-with-responses.tmpl file, but loaded in through
+    # github's raw.githubusercontent.com. The general form
+    # to use raw.githubusercontent.com is as follows
+    # https://raw.githubusercontent.com/<username>/<project>/<hash|tag|branch>/path/to/template/template.tmpl
+
+    # using raw.githubusercontent.com with a hash
+    client-with-responses.tmpl: https://raw.githubusercontent.com/deepmap/oapi-codegen/7b010099dcf1192b3bfaa3898b5f375bb9590ddf/pkg/codegen/templates/client-with-responses.tmpl

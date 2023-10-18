@@ -1,0 +1,5 @@
+generate:
+  client: true
+  models: true
+package: gen
+output: oapi/gen/integration-client.gen.go
