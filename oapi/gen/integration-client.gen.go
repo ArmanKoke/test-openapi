@@ -31,7 +31,7 @@ type BetRequest struct {
 	// PlayMode The play mode which can be one of:
 	// 1 – real money
 	// 3 – anonymous
-	PlayMode PlayMode `json:"playMode"`
+	PlayMode PlayMode `json:"playMode" validate:"oneof=1,3"`
 
 	// PlayerId The ID of the player’s
 	// account in the game

@@ -3,17 +3,20 @@ package oapi
 import (
 	"context"
 
+	"github.com/go-playground/validator/v10"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/releaseband/test-openapi/oapi/gen"
 )
 
 func StartClient() {
-	client, err := gen.NewClientWithResponses(":8080")
+	client, err := gen.NewClientWithResponses(
+		":8080",
+	)
 	if err != nil {
 		panic(err)
 	}
 
-	httpResp, err := client.BetWithResponse(context.Background(), gen.BetRequest{
+	req := gen.BetRequest{
 		Amount:           0,
 		CloseRound:       nil,
 		Currency:         "USD",
@@ -26,7 +29,15 @@ func StartClient() {
 		SecurityToken:    "",
 		SessionId:        "",
 		TransactionId:    "",
-	})
+	}
+
+	validate := validator.New()
+	err = validate.Struct(req)
+	if err != nil {
+		panic(err)
+	}
+
+	httpResp, err := client.BetWithResponse(context.Background(), req)
 	if err != nil {
 		panic(err)
 	}
